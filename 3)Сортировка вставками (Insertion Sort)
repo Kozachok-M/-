@@ -1,0 +1,44 @@
+с Java на C++
+#include <iostream>
+using namespace std;
+
+// Функция для сортировки массива методом вставок
+void insertionSort(int array[], int size) {
+    // Проходим по всем элементам массива, начиная со второго
+    for (int i = 1; i < size; i++) {
+        int key = array[i];  // Текущий элемент, который нужно вставить
+        int j = i - 1;       // Индекс предыдущего элемента
+        
+        // Перемещаем элементы array[0..i-1], которые больше key
+        // на одну позицию вперед
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+        array[j + 1] = key;  // Вставляем key на правильное место
+    }
+}
+
+// Функция для вывода массива
+void printArray(int array[], int size) {
+    for (int i = 0; i < size; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
+// Основная функция для тестирования
+int main() {
+    int array[] = {12, 11, 13, 5, 6};
+    int size = sizeof(array) / sizeof(array[0]);
+    
+    cout << "Исходный массив:" << endl;
+    printArray(array, size);
+    
+    insertionSort(array, size);
+    
+    cout << "Отсортированный массив:" << endl;
+    printArray(array, size);
+    
+    return 0;
+}
